@@ -1,6 +1,7 @@
 package api.tests;
 
 import api.models.Suite;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -37,5 +38,22 @@ public class SuiteTest {
             .then()
                 .log().all()
                 .extract().asString();
+        }
+
+        @Test
+    public void updateSuiteTest(){
+            Suite suite = Suite.builder()
+                    .title("Login")
+                    .build();
+
+            String response = given().baseUri("https://api.qase.io/v1/")
+                    .header("Token",TOKEN)
+                    .when()
+                    .body(suite)
+                    .delete("suite/ATT/1")
+                    .then()
+                    .log().all()
+                    .extract().asString();
+            Assert.assertTrue(true,"The suite does not exist");
         }
 }
