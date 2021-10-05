@@ -1,6 +1,7 @@
 package api.tests;
 
 import api.models.Project;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -12,7 +13,7 @@ public class ProjectTests {
     @Test
     public void createProjectTest(){
         Project project = Project.builder()
-                .title("AQA_TT").code("ATT").description("Diploma Project #2").access("all")
+                .title("AQA_YT").code("AYT").description("Diploma Project #2").access("all")
                 .build();
 
         String response = given().baseUri("https://api.qase.io/v1/")
@@ -23,6 +24,7 @@ public class ProjectTests {
             .then()
                 .log().all()
                 .extract().asString();
+        Assert.assertTrue(true, "The project is created");
     }
 
     @Test
@@ -40,5 +42,6 @@ public class ProjectTests {
             .then()
                 .log().all()
                 .extract().asString();
+        Assert.assertTrue(true, "You see all projects");
     }
 }

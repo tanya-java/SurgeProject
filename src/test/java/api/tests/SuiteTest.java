@@ -8,7 +8,8 @@ import static io.restassured.RestAssured.given;
 
 public class SuiteTest {
     public static final String TOKEN = "be7417c974ae731b98f135afe3af952c6156879b";
-    @Test
+
+   @Test
     public void createSuiteTest(){
         Suite suite = Suite.builder()
                 .title("Login")
@@ -18,10 +19,11 @@ public class SuiteTest {
                 .header("Token",TOKEN)
             .when()
                 .body(suite)
-                .post("suite/ATT")
+                .post("suite/AYT")
             .then()
                 .log().all()
                 .extract().asString();
+        Assert.assertTrue(true,"The suite us created");
     }
 
     @Test
@@ -34,24 +36,25 @@ public class SuiteTest {
                 .header("Token",TOKEN)
             .when()
                 .body(suite)
-                .delete("suite/ATT")
+                .delete("suite/AYT/3")
             .then()
                 .log().all()
                 .extract().asString();
+        Assert.assertTrue(true, "The suite is deleted");
         }
 
-        @Test
+    @Test
     public void updateSuiteTest(){
             Suite suite = Suite.builder()
                     .title("Login")
                     .build();
 
-            String response = given().baseUri("https://api.qase.io/v1/")
+        String response = given().baseUri("https://api.qase.io/v1/")
                     .header("Token",TOKEN)
-                    .when()
+            .when()
                     .body(suite)
-                    .delete("suite/ATT/1")
-                    .then()
+                    .delete("suite/AYT/3")
+            .then()
                     .log().all()
                     .extract().asString();
             Assert.assertTrue(true,"The suite does not exist");

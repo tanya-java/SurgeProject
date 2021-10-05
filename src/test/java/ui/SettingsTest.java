@@ -1,9 +1,8 @@
+package ui;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Locale;
 
 public class SettingsTest extends BaseTest {
 
