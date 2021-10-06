@@ -1,6 +1,7 @@
 package api.tests;
 
 import api.models.Suite;
+import api.models.responses.SuiteResponse;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,54 +10,54 @@ import static io.restassured.RestAssured.given;
 public class SuiteTest {
     public static final String TOKEN = "be7417c974ae731b98f135afe3af952c6156879b";
 
-   @Test
-    public void createSuiteTest(){
+   @Test(priority = 1, groups = "Group")
+    public void addSuiteTest(){
         Suite suite = Suite.builder()
-                .title("Login")
+                .title("Password")
                 .build();
 
-        String response = given().baseUri("https://api.qase.io/v1/")
+        SuiteResponse suiteResponse = given().baseUri("https://api.qase.io/v1/")
                 .header("Token",TOKEN)
             .when()
                 .body(suite)
                 .post("suite/AYT")
             .then()
                 .log().all()
-                .extract().asString();
-        Assert.assertTrue(true,"The suite us created");
+                .extract().as(SuiteResponse.class);
+       Assert.assertNotNull(suiteResponse);
     }
 
-    @Test
-    public void deleteSuiteTest(){
+    @Test(priority = 2, groups = "Group")
+    public void changeSuiteTest(){
         Suite suite = Suite.builder()
-                .title("Login")
+                .title("New password")
                 .build();
 
-        String response = given().baseUri("https://api.qase.io/v1/")
+        SuiteResponse suiteResponse = given().baseUri("https://api.qase.io/v1/")
                 .header("Token",TOKEN)
             .when()
                 .body(suite)
-                .delete("suite/AYT/3")
+                .patch("suite/AYT/8")
             .then()
                 .log().all()
-                .extract().asString();
-        Assert.assertTrue(true, "The suite is deleted");
-        }
+                .extract().as(SuiteResponse.class);
+        Assert.assertNotNull(suiteResponse);
+    }
 
-    @Test
-    public void updateSuiteTest(){
-            Suite suite = Suite.builder()
-                    .title("Login")
-                    .build();
+    @Test(priority = 3, groups = "Group")
+    public void deleteSuiteTest(){
+        Suite suite = Suite.builder()
+                .title("New password")
+                .build();
 
-        String response = given().baseUri("https://api.qase.io/v1/")
-                    .header("Token",TOKEN)
+        SuiteResponse suiteResponse = given().baseUri("https://api.qase.io/v1/")
+                .header("Token",TOKEN)
             .when()
-                    .body(suite)
-                    .delete("suite/AYT/3")
+                .body(suite)
+                .delete("suite/AYT/8")
             .then()
-                    .log().all()
-                    .extract().asString();
-            Assert.assertTrue(true,"The suite does not exist");
+                .log().all()
+                .extract().as(SuiteResponse.class);
+        Assert.assertNotNull(suiteResponse);
         }
 }

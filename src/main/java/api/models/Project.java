@@ -11,6 +11,7 @@ public class Project {
     String description;
     String access;
     String group;
+    String count;
     int limit;
     int offset;
 }

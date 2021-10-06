@@ -31,10 +31,10 @@ public class CalendarPage extends BasePage{
     @FindBy(id = "WorkoutDate")
     private WebElement dateInput;
 
-    @FindBy(xpath = "//*[@id=\"CalendarContent\"]/div/div[2]/div[2]/table/tbody/tr[5]/td[3]/div/div[2]")
+    @FindBy(css = "div[class='fc-event-activity-title']")
     private WebElement activityContent;
 
-    @FindBy(xpath = "//*[@id=\"workout-add\"]/div[1]/strong")
+    @FindBy(css = "div[class='alert alert-error']")
     private WebElement errorMessage;
 
     public CalendarPage addWorkout(String time, String name, String distance, String duration, String date){

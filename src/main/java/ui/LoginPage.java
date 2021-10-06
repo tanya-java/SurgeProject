@@ -14,10 +14,11 @@ public class LoginPage extends BasePage{
     @FindBy(id = "login_password")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "//*[@id=\"login-validate\"]/div[2]/button")
+    @FindBy(xpath = "//button[@type='submit' and text()='Login']")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//*[@id=\"login-wrapper\"]/div[1]/div[1]/div/strong")
+    //@FindBy(xpath = "//*[@parentId=\"login-wrapper\"]/div[1]/div[1]/div/strong")
+    @FindBy(css = "div[class='alert alert-error']")
     private WebElement errorMessage;
 
     public LoginPage(WebDriver driver) {

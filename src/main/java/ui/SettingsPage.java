@@ -13,7 +13,7 @@ public class SettingsPage extends BasePage{
     @FindBy(xpath = "/html/body/div[1]/header/div/div/div[3]/div/div/div/ul/li[1]/a")
     private WebElement settingsButton;
 
-    @FindBy(xpath = "//*[@id=\"ProfileEditLink\"]/div/span")
+    @FindBy(css = "span[class='dropdown-toggle']")
     private WebElement editProfileButton;
 
     @FindBy(id = "female")
@@ -43,7 +43,7 @@ public class SettingsPage extends BasePage{
     @FindBy(id = "lname")
     private WebElement lastNameInput;
 
-    @FindBy(xpath = "//*[@id=\"EditProfile\"]/div/div[2]/p[1]/text()")
+    @FindBy(xpath = "//*[@parentId=\"EditProfile\"]/div/div[2]/p[1]/text()")
     private WebElement lastname;
 
     public SettingsPage addInfo(String lastName, String birthday, String weight, String city, String postalCode){

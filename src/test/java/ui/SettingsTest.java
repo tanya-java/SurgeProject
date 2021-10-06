@@ -19,7 +19,8 @@ public class SettingsTest extends BaseTest {
         HomePage homePage = loginPage.login(USERNAME, PASSWORD);
         SettingsPage settingsPage = new SettingsPage(driver);
         settingsPage.addInfo(LAST_NAME,BIRTHDAY,WEIGHT,CITY,POSTAL_CODE);
-        Assert.assertTrue(true,driver.findElement(By.xpath("//*[@id=\"EditProfile\"]/div/div[2]/p[1]"))
+//        System.out.println(driver.findElement(By.cssSelector("small[class='muted']")).getText());
+        Assert.assertTrue(true,driver.findElement(By.cssSelector("small[class='muted']"))
                 .getText()
                 .concat("tanya yermalitskaya"));
     }

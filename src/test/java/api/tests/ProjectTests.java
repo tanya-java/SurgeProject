@@ -1,6 +1,7 @@
 package api.tests;
 
 import api.models.Project;
+import api.models.responses.ProjectResponse;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,35 +14,34 @@ public class ProjectTests {
     @Test
     public void createProjectTest(){
         Project project = Project.builder()
-                .title("AQA_YT").code("AYT").description("Diploma Project #2").access("all")
+                .title("AQA_YTU").code("YTU").description("Diploma Project #2").access("all")
                 .build();
 
-        String response = given().baseUri("https://api.qase.io/v1/")
+        ProjectResponse projectResponse = given().baseUri("https://api.qase.io/v1/")
                 .header("Token",TOKEN)
             .when()
                 .body(project)
                 .post("project")
             .then()
                 .log().all()
-                .extract().asString();
-        Assert.assertTrue(true, "The project is created");
+                .extract().as(ProjectResponse.class);
+    Assert.assertEquals(projectResponse.getResult().getCode(), project.getCode());
     }
 
-    @Test
-    public void getAllProjects(){
-        Project project = Project.builder()
-                .limit(100)
-                .offset(0)
-                .build();
-
-        String response = given().baseUri("https://api.qase.io/v1/")
-                .header("Token",TOKEN)
-            .when()
-                .body(project)
-                .get("project")
-            .then()
-                .log().all()
-                .extract().asString();
-        Assert.assertTrue(true, "You see all projects");
-    }
+//    @Test
+//    public void getSpecificProject(){
+//        Project project = Project.builder()
+//                .code("YTU")
+//                .build();
+//
+//        ProjectResponse projectResponse = given().baseUri("https://api.qase.io/v1/")
+//                .header("Token",TOKEN)
+//            .when()
+//                .body(project)
+//                .get("project/YTU")
+//            .then()
+//                .log().all()
+//                .extract().as(ProjectResponse.class);
+//        Assert.assertEquals(projectResponse.getResult().getCode(), project.getCode());
+//    }
 }

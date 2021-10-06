@@ -1,0 +1,24 @@
+Surge Project Checklist:
+1. Login
+1.1 To login with the correct credentials;
+1.2 To login with the wrong credentials;
+
+2. Calendar
+2.1 To add a workout;
+2.2 To add a workout without it's type;
+
+3. Profile Settings
+3.1 To fill in the profile information;
+
+
+Qase Checklist:
+1. Project
+1.1 To create a new project;
+1.2 To get all projects;
+
+2. Suite
+2.1 To create a new suite;
+2.2 To update the suite;
+2.3 To delete the suite;
+
+
