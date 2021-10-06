@@ -9,6 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class SuiteTest {
     public static final String TOKEN = "be7417c974ae731b98f135afe3af952c6156879b";
+    private int id;
 
    @Test(priority = 1, groups = "Group")
     public void addSuiteTest(){
@@ -24,6 +25,7 @@ public class SuiteTest {
             .then()
                 .log().all()
                 .extract().as(SuiteResponse.class);
+        id = Integer.parseInt(suiteResponse.getResult().getId());
        Assert.assertNotNull(suiteResponse);
     }
 
@@ -37,7 +39,7 @@ public class SuiteTest {
                 .header("Token",TOKEN)
             .when()
                 .body(suite)
-                .patch("suite/AYT/8")
+                .patch(String.format("suite/AYT/%d",id))
             .then()
                 .log().all()
                 .extract().as(SuiteResponse.class);
@@ -54,7 +56,7 @@ public class SuiteTest {
                 .header("Token",TOKEN)
             .when()
                 .body(suite)
-                .delete("suite/AYT/8")
+                .delete(String.format("suite/AYT/%d",id))
             .then()
                 .log().all()
                 .extract().as(SuiteResponse.class);

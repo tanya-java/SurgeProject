@@ -19,10 +19,10 @@ public class BaseTest {
         loginPage = openLoginPage();
     }
 
-//    @AfterMethod
-//    public void close() {
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void close() {
+        driver.quit();
+    }
 
     private LoginPage openLoginPage(){
         driver.get(URL);
